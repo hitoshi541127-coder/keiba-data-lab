@@ -15,28 +15,35 @@ SPIDER_MODULES = ['netkeiba_python.spiders']
 NEWSPIDER_MODULE = 'netkeiba_python.spiders'
 
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'netkeiba_python (+http://www.yourdomain.com)'
+# Crawl responsibly by identifying yourself.
+USER_AGENT = 'netkeiba_python/0.2 (+https://github.com/Kurorororo/netkeiba_python)'
 
-# Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+# Keep crawling stable in restricted environments.
+# Netkeiba's robots.txt can block headless runs in some setups.
+ROBOTSTXT_OBEY = False
 
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 4
+CONCURRENT_REQUESTS_PER_DOMAIN = 2
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1.0
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = False
+
+DOWNLOAD_TIMEOUT = 30
+RETRY_ENABLED = True
+RETRY_TIMES = 3
+RETRY_HTTP_CODES = [408, 429, 500, 502, 503, 504, 522, 524]
+FEED_EXPORT_ENCODING = 'utf-8'
 
 # Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
 #DEFAULT_REQUEST_HEADERS = {
@@ -70,21 +77,21 @@ ROBOTSTXT_OBEY = True
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
+AUTOTHROTTLE_START_DELAY = 1
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_MAX_DELAY = 10
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
-#HTTPCACHE_EXPIRATION_SECS = 0
-#HTTPCACHE_DIR = 'httpcache'
-#HTTPCACHE_IGNORE_HTTP_CODES = []
-#HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+HTTPCACHE_ENABLED = True
+HTTPCACHE_EXPIRATION_SECS = 86400
+HTTPCACHE_DIR = 'httpcache'
+HTTPCACHE_IGNORE_HTTP_CODES = [400, 401, 403, 404, 429, 500, 502, 503, 504]
+HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'

@@ -1,0 +1,17 @@
+[project]
+name = "netkeiba-python"
+version = "0.2.0"
+description = "Scrapy spider and CSV converter for netkeiba race data"
+requires-python = ">=3.8"
+dependencies = [
+    "scrapy>=2.11,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
