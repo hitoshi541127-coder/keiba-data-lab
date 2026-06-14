@@ -1,7 +1,7 @@
 [project]
-name = "netkeiba-python"
+name = "keiba-data-lab"
 version = "0.2.0"
-description = "Scrapy spider and CSV converter for netkeiba race data"
+description = "Stable Scrapy pipeline for collecting and converting Japanese horse racing data"
 requires-python = ">=3.8"
 dependencies = [
     "scrapy>=2.11,<3",

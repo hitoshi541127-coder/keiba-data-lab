@@ -1,6 +1,17 @@
-# netkeiba_python
+# Keiba Data Lab
 
-Scrapy で `db.netkeiba.com` のレース結果ページを収集し、JSON から CSV に変換するためのツールです。
+競馬データを収集・検証・CSV化するための Scrapy ベースのデータパイプラインです。
+`db.netkeiba.com` のレース結果ページを安定して収集し、機械学習や分析に使いやすいCSVへ変換します。
+
+This project is based on [Kurorororo/netkeiba_python](https://github.com/Kurorororo/netkeiba_python) and extends it with safer crawling, CSV conversion, tests, and CI.
+
+## 特徴
+
+- 実HTMLのテーブルヘッダを見て列をマッピングするため、列ズレに強い
+- `max_pages` / `max_races` / `min_date` で小さく試してから長時間実行できる
+- Scrapy の `-O` 出力だけでなく、連結されたJSON配列もCSV変換できる
+- DNS制限環境でもローカルHTMLで処理経路を検証できる
+- pytest と GitHub Actions で基本動作を検証できる
 
 ## 対応環境
 

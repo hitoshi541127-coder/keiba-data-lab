@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for netkeiba_python project
+# Scrapy settings for Keiba Data Lab
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'netkeiba_python'
+BOT_NAME = 'keiba_data_lab'
 
 SPIDER_MODULES = ['netkeiba_python.spiders']
 NEWSPIDER_MODULE = 'netkeiba_python.spiders'
 
 
 # Crawl responsibly by identifying yourself.
-USER_AGENT = 'netkeiba_python/0.2 (+https://github.com/Kurorororo/netkeiba_python)'
+USER_AGENT = 'keiba-data-lab/0.2 (+https://github.com/Kurorororo/netkeiba_python)'
 
 # Keep crawling stable in restricted environments.
 # Netkeiba's robots.txt can block headless runs in some setups.
