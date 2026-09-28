@@ -36,3 +36,24 @@ jobs:
           path: |
             sample.json
             sample.csv
+      - name: Debug netkeiba response
+        run: |
+          python - <<'PY'
+          import requests
+
+          url = "https://db.netkeiba.com/?pid=race_top"
+          headers = {
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+          }
+
+          r = requests.get(url, headers=headers, timeout=30)
+
+          print("STATUS:", r.status_code)
+          print("URL:", r.url)
+          print("LENGTH:", len(r.content))
+          print("----- RESPONSE -----")
+          print(r.text[:2000])
+
+          with open("debug_response.html", "w", encoding="utf-8") as f:
+              f.write(r.text)
+          PY
