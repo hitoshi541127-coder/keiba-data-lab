@@ -1,1 +1,38 @@
+name: Collect Keiba Data
 
+on:
+  workflow_dispatch:
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Collect sample
+        run: |
+          scrapy crawl netkeiba -O sample.json -a max_pages=1 -a max_races=5
+
+      - name: Convert to CSV
+        run: |
+          python netkeiba_python/jsontocsv.py -i sample.json -o sample.csv
+
+      - name: Upload data
+        uses: actions/upload-artifact@v4
+        with:
+          name: keiba-sample
+          path: |
+            sample.json
+            sample.csv
