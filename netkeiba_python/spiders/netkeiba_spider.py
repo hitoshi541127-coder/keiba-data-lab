@@ -1,4 +1,4 @@
-すimport os
+import os
 import re
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
