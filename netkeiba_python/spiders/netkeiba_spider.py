@@ -1,4 +1,4 @@
-import os
+すimport os
 import re
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -7,7 +7,7 @@ import scrapy
 
 
 DEFAULT_MIN_DATE = "20071231"
-DEFAULT_START_URL = "https://db.netkeiba.com/?pid=race_top"
+DEFAULT_START_URL = "https://db.netkeiba.com/race/list.html"
 
 HORSE_KEYS = [
     "order",
