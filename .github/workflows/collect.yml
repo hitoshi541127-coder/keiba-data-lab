@@ -23,7 +23,7 @@ jobs:
 
       - name: Collect sample
         run: |
-          scrapy crawl netkeiba -O sample.json -a max_pages=1 -a max_races=5
+          scrapy crawl netkeiba -O sample.json -a max_pages=1 -a max_races=50す
 
       - name: Convert to CSV
         run: |
