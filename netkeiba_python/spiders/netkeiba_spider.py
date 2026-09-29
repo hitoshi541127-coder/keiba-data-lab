@@ -255,6 +255,8 @@ class NetkeibaSpider(scrapy.Spider):
             )
 
         for href in dict.fromkeys(race_urls):
+            race_id = self._extract_race_id(self._resolve_url(response, href))
+            if not race_id or race_id[4:6] not in {"01","02","03","04","05","06","07","08","09","10"}: continue
             if self.max_races and self.races_seen >= self.max_races:
                 self.logger.info("Stopped race crawl at max_races=%s", self.max_races)
                 return
