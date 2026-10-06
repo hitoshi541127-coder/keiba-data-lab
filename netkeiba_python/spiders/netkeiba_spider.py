@@ -256,9 +256,6 @@ class NetkeibaSpider(scrapy.Spider):
         self.logger.info("FOUND RACE URLS: %s", len(race_urls))
         for href in dict.fromkeys(race_urls):
             race_id = self._extract_race_id(self._resolve_url(response, href))
-            if self.max_races and self.races_seen >= self.max_races:
-            self.logger.info("Stopped race crawl at max_races=%s", self.max_races)
-            return
             self.races_seen += 1
             yield scrapy.Request(
                 self._resolve_url(response, href),
