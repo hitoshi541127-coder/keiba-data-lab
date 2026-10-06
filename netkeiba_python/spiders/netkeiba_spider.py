@@ -274,6 +274,9 @@ class NetkeibaSpider(scrapy.Spider):
             "source_url": response.url,
             "title": response.css("title::text").get() or response.css("h1::text").get(),
             "horses": [],
+            "distance": self._clean_text(
+                response.css(".racedata .txt::text, .racedata::text")
+            ),
             "diary": self._clean_text(response.css(".diary_snap_cut span::text, .diary_snap_cut::text")),
             "smalltxt": self._clean_text(response.css("p.smalltxt::text")),
         }
