@@ -253,6 +253,7 @@ class NetkeibaSpider(scrapy.Spider):
                 href for href in response.css(selector).getall()
                 if self._is_race_detail_href(href)
             )
+self.logger.info("FOUND RACE URLS: %s", len(race_urls))
 
         for href in dict.fromkeys(race_urls):
             race_id = self._extract_race_id(self._resolve_url(response, href))
