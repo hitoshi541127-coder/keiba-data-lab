@@ -265,9 +265,6 @@ class NetkeibaSpider(scrapy.Spider):
 
     def parse_race(self, response):
         rows = response.css(".race_table_01 tr")
-        if len(rows) < 2:
-            self.logger.warning("Skip race without result table: %s", response.url)
-            return
 
         result = {
             "race_id": self._extract_race_id(response.url),
