@@ -422,8 +422,9 @@ def parse_horse(horse):
     last_spurt = float_or_none(horse.get('last-spurt'))
     prise = parse_prise(horse.get('prise'))
 
-    return [name,
-            jocky,
+    return [horse.get('horse_id'),
+            name,
+            jockey,
             trainer,
             owner,
             frame,
