@@ -265,6 +265,16 @@ class NetkeibaSpider(scrapy.Spider):
 
     def parse_race(self, response):
         rows = response.css(".race_table_01 tr")
+        self.logger.warning(
+            "DEBUG RACE %s status=%s title=%r rows=%s tables=%s horse_links=%s body=%s",
+            response.url,
+            response.status,
+            response.css("title::text").get(),
+            len(rows),
+            len(response.css("table tr")),
+            len(response.css('a[href*="/horse/"]')),
+            len(response.text),
+        )
         race_data = self._clean_text(
             response.css(".racedata.fc span::text")
         )
