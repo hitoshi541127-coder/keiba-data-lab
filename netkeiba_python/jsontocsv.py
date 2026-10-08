@@ -46,6 +46,7 @@ HEADER = [# race information
           'is_dirt_bad',
           'number_of_horses',
           # horse str information
+          'horse_id',
           'name',
           'jocky',
           'trainer',
