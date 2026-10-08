@@ -354,7 +354,7 @@ def parse_race(race_id, race):
 
     g1, g2, g3 = parse_class(title)
 
-    diary = race.get('diary', '')
+    diary = race.get('race_data') or race.get('diary', '')
     turf, dirt, obstacle = parse_field(diary)
     right, left, straight = parse_rotation(diary)
     distance = parse_distance(diary)
