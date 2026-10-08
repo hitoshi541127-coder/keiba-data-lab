@@ -265,15 +265,30 @@ class NetkeibaSpider(scrapy.Spider):
 
     def parse_race(self, response):
         rows = response.css(".race_table_01 tr")
-
+        race_data = self._clean_text(
+            response.css(".racedata.fc span::text")
+        )
+        distance_match = re.search(r"(?:芝|ダ|障|直)?(?:右|左|外|内)?(?:\s*外)?(\d+)m", race_data or "")
+        distance = distance_match.group(1) if distance_match else None
+        surface_match = re.search(r"(芝|ダ|障)", race_data or "")
+        surface = surface_match.group(1) if surface_match else None
+        direction_match = re.search(r"(右|左|直)", race_data or "")
+        direction = direction_match.group(1) if direction_match else None
+        weather_match = re.search(r"天候\s*:\s*([^/]+)", race_data or "")
+        weather = weather_match.group(1).strip() if weather_match else None
+        going_match = re.search(r"(?:芝|ダート)\s*:\s*([^/]+)", race_data or "")
+        going = going_match.group(1).strip() if going_match else None
         result = {
             "race_id": self._extract_race_id(response.url),
             "source_url": response.url,
             "title": response.css("title::text").get() or response.css("h1::text").get(),
             "horses": [],
-            "race_data": self._clean_text(
-                response.css(".racedata.fc span::text")
-            ),
+            "race_data": race_data,
+            "distance": distance,
+            "surface": surface,
+            "direction": direction,
+            "weather": weather,
+            "going": going,
             "diary": self._clean_text(response.css(".diary_snap_cut span::text, .diary_snap_cut::text")),
             "smalltxt": self._clean_text(response.css("p.smalltxt::text")),
         }
