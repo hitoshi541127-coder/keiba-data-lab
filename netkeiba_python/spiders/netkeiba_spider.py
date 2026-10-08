@@ -318,6 +318,10 @@ class NetkeibaSpider(scrapy.Spider):
                 horse_match = re.search(r"/horse/(\d+)/?", horse_href or "")
                 horse["horse_id"] = horse_match.group(1) if horse_match else None
                 result["horses"].append(horse)
+                self.logger.warning(
+                    "DEBUG HORSE COUNT=%s",
+                    len(result["horses"]),
+                )
 
         if not result["horses"]:
             self.logger.warning("Skip race without horse rows: %s", response.url)
