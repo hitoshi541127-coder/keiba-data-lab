@@ -294,12 +294,15 @@ class NetkeibaSpider(scrapy.Spider):
         }
 
         headers = [self._clean_text(th.css("::text")) for th in rows[0].css("th")]
-
         for row in rows[1:]:
             values = [self._clean_text(td.css("::text")) for td in row.css("td")]
             if not values:
                 continue
-            result["horses"].append(self._map_horse(headers, values))
+                horse = self._map_horse(headers, values)
+                horse_href = row.css('a[href*="/horse/"]::attr(href)').get()
+                horse_match = re.search(r"/horse/(\d+)/?", horse_href or "")
+                horse["horse_id"] = horse_match.group(1) if horse_match else None
+                result["horses"].append(horse)
 
         if not result["horses"]:
             self.logger.warning("Skip race without horse rows: %s", response.url)
