@@ -306,6 +306,11 @@ class NetkeibaSpider(scrapy.Spider):
         headers = [self._clean_text(th.css("::text")) for th in rows[0].css("th")]
         for row in rows[1:]:
             values = [self._clean_text(td.css("::text")) for td in row.css("td")]
+            self.logger.warning(
+                "DEBUG HORSE ROW values=%r count=%s",
+                values,
+                len(values),
+            )
             if not values:
                 continue
                 horse = self._map_horse(headers, values)
